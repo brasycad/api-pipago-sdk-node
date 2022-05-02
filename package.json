@@ -12,9 +12,10 @@
   },
   "keywords": [
     "pipago",
-    "api"
+    "api",
+    "pix"
   ],
-  "author": "Jose M.Villar",
+  "author": "Jose M. Villar",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/brasycad/api-pipago-sdk-node/issues"
