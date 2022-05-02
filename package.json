@@ -1,0 +1,31 @@
+{
+  "name": "api-pipago-sdk-node",
+  "version": "1.0.0",
+  "description": "Api on Nodejs to connect clients of the Brazilian payment system PIPAGO.",
+  "main": "index.js",
+  "scripts": {
+    "tsc": "tsc -p tsconfig.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/brasycad/api-pipago-sdk-node.git"
+  },
+  "keywords": [
+    "pipago",
+    "api"
+  ],
+  "author": "Jose M.Villar",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/brasycad/api-pipago-sdk-node/issues"
+  },
+  "homepage": "https://github.com/brasycad/api-pipago-sdk-node#readme",
+  "dependencies": {
+    "axios": "^0.27.2",
+    "axios-observable": "^1.4.0",
+    "rxjs": "^7.5.5"
+  },
+  "devDependencies": {
+    "@types/node": "^17.0.31"
+  }
+}
