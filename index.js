@@ -1,1 +1,1 @@
-module.exports = require("./dist/src/pipago");
+module.exports = require("./dist/src/index");
