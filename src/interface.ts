@@ -1,4 +1,4 @@
-import { CREDIT_CARD_STATUS, CREDIT_CARD_TYPE, DEPOSIT_STATUS, DEPOSIT_TYPE, ENUM_DEPOSITS_PROVIDERS, WITHDRAW_STATE } from "./enums"
+import { CREDIT_CARD_STATUS, CREDIT_CARD_TYPE, DEPOSIT_STATUS, DEPOSIT_TYPE, ENUM_DEPOSITS_PROVIDERS, WITHDRAW_STATE, WITHDRAW_STATUS_GN } from "./enums"
 
 export interface IAxiosError {
     error: any
@@ -125,9 +125,24 @@ export interface IPixResponse {
     provider: ENUM_DEPOSITS_PROVIDERS
 }
 
+export interface IBoletoResponse {
+    cob: any
+    status: DEPOSIT_STATUS
+    timestamp: number
+    expire: number
+}
+
+
 export interface ICheckResponse {
     trasaction_id: string
     type: DEPOSIT_TYPE
     status: DEPOSIT_STATUS | WITHDRAW_STATE
     merchant_id: string
+}
+
+
+export interface IWithdrawResponse {
+    merchant_id: string
+    status: WITHDRAW_STATUS_GN
+    transaction_id: string
 }

@@ -2,7 +2,7 @@ import { Observable, of, Subscription, timer } from 'rxjs';
 import Axios from 'axios-observable';
 import { catchError, map, tap, switchMap, retry } from 'rxjs/operators';
 import { AxiosResponse } from 'axios';
-import { IAccessToken, IAuthPayload, ICheckResponse, IHttpResponse, IPixPayload, IPixResponse } from './interface';
+import { IAccessToken, IAuthPayload, IBoletoPayload, ICheckResponse, IHttpResponse, IPixPayload, IPixResponse, IWithdrawPayload, IWithdrawResponse } from './interface';
 import { HOST, MS_ONE_MIN } from './constants';
 const axios = Axios.create({ baseURL: HOST, timeout: 20000 });
 
@@ -62,4 +62,85 @@ export class PipagoSdkNode {
         map((response: IHttpResponse) => response.error ? response : response.data)
       );
   }
+
+
+  public boleto_create(payload: IBoletoPayload): Observable<IPixResponse> {
+    return axios.post('boleto/create', payload, { headers: { Authorization: `Bearer ${this.access_token}` } })
+      .pipe(
+        catchError((err) => {
+          console.log('boleto/create', err);
+          return of(err);
+        }),
+        map((response: AxiosResponse) => response?.data || response),
+        map((response: IHttpResponse) => response.error ? response : response.data)
+      );
+  }
+  public boleto_check(transaction_id: string): Observable<ICheckResponse> {
+    return axios.get(`pix/check/${transaction_id}`, { headers: { Authorization: `Bearer ${this.access_token}` } })
+      .pipe(
+        catchError((err) => {
+          console.log('pix/check', err);
+          return of(err);
+        }),
+        map((response: AxiosResponse) => response?.data || response),
+        map((response: IHttpResponse) => response.error ? response : response.data)
+      );
+  }
+  public cc_create(payload: IBoletoPayload): Observable<IPixResponse> {
+    return axios.post('cc/create', payload, { headers: { Authorization: `Bearer ${this.access_token}` } })
+      .pipe(
+        catchError((err) => {
+          console.log('cc/create', err);
+          return of(err);
+        }),
+        map((response: AxiosResponse) => response?.data || response),
+        map((response: IHttpResponse) => response.error ? response : response.data)
+      );
+  }
+  public cc_check(transaction_id: string): Observable<ICheckResponse> {
+    return axios.get(`cc/check/${transaction_id}`, { headers: { Authorization: `Bearer ${this.access_token}` } })
+      .pipe(
+        catchError((err) => {
+          console.log('cc/check', err);
+          return of(err);
+        }),
+        map((response: AxiosResponse) => response?.data || response),
+        map((response: IHttpResponse) => response.error ? response : response.data)
+      );
+  }
+  public mp_create(payload: IBoletoPayload): Observable<IPixResponse> {
+    return axios.post('mp/create', payload, { headers: { Authorization: `Bearer ${this.access_token}` } })
+      .pipe(
+        catchError((err) => {
+          console.log('mp/create', err);
+          return of(err);
+        }),
+        map((response: AxiosResponse) => response?.data || response),
+        map((response: IHttpResponse) => response.error ? response : response.data)
+      );
+  }
+  public mp_check(transaction_id: string): Observable<ICheckResponse> {
+    return axios.get(`mp/check/${transaction_id}`, { headers: { Authorization: `Bearer ${this.access_token}` } })
+      .pipe(
+        catchError((err) => {
+          console.log('mp/check', err);
+          return of(err);
+        }),
+        map((response: AxiosResponse) => response?.data || response),
+        map((response: IHttpResponse) => response.error ? response : response.data)
+      );
+  }
+  public pix_send(payload: IWithdrawPayload): Observable<IWithdrawResponse> {
+    return axios.post('pix/send', payload, { headers: { Authorization: `Bearer ${this.access_token}` } })
+      .pipe(
+        catchError((err) => {
+          console.log('pix/send', err);
+          return of(err);
+        }),
+        map((response: AxiosResponse) => response?.data || response),
+        map((response: IHttpResponse) => response.error ? response : response.data)
+      );
+  }
+
+
 }
