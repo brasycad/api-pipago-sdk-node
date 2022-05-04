@@ -4,7 +4,7 @@
 
 > Um módulo nodejs para integrar seu backend com os serviços de pagamento da [Pipago](https://pipago.com.br/).
 
-## [](https://github.com/brasycad/api-pipago-sdk-node/blob/master/README.md#instala%C3%A7%C3%A3o)Instalação/Instalation
+## [](https://github.com/brasycad/api-pipago-sdk-node/blob/master/README.md#instala%C3%A7%C3%A3o)Instalação/Installation
 
 ```bash
 $ npm install api-pipago-sdk-node
@@ -12,7 +12,7 @@ $ npm install api-pipago-sdk-node
 
 ## [](https://github.com/brasycad/api-pipago-sdk-node/blob/master/README.md#uso-b%C3%A1sico)Uso Básico/Basic usage
 
-Importe o módulo:
+Importe o módulo/Importe o módulo::
 
 ```js
 import { PipagoSdkNode } from 'api-pipago-sdk-node';
