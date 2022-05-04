@@ -40,7 +40,7 @@ return  this.pipagoSdkNode.pix_create(payload)
 response:IPixResponse = {
 	data: {
 		reference: '1651688846000SCIRQD53V74gn',
-		cob: { qrcode: { qrcode:'qrcode-string' },
+		cob: { qrcode: { qrcode:'qrcode-string' }},
 		status: 'PENDING',
 		timestamp: 1651688849347,
 		expire: 1651692449347,
