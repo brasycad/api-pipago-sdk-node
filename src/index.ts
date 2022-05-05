@@ -39,7 +39,7 @@ export class PipagoSdkNode {
         map((response: IHttpResponse) => response.data),
         map((data: IAccessToken) => data?.access_token),
         filter(Boolean),
-        tap((access_token: string) => Axios.defaults.headers.common['Authorization'] = access_token)
+        tap((access_token: string) => axios.defaults.headers.common['Authorization'] = `Bearer ${access_token}`)
       )
   }
   public pix_create(payload: IPixPayload): Observable<IPixResponse> {
