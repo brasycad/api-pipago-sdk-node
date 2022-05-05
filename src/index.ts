@@ -8,6 +8,7 @@ import { ResponsePipago } from './operators.rxjs';
 const axios = Axios.create({ baseURL: HOST, timeout: 20000 });
 
 export class PipagoSdkNode {
+  private access_token: string
   private initializer: Observable<any>;
   private sub$: Subscription;
   private config: IAuthPayload;
@@ -40,6 +41,7 @@ export class PipagoSdkNode {
         map((data: IAccessToken) => data?.access_token),
         filter(Boolean),
         tap((access_token: string) => axios.defaults.headers.common['Authorization'] = `Bearer ${access_token}`)
+        //tap((access_token: string) => this.access_token = access_token)
       )
   }
   public pix_create(payload: IPixPayload): Observable<IPixResponse> {

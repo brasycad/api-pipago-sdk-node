@@ -27,7 +27,9 @@ class PipagoSdkNode {
             .pipe((0, operators_1.retry)(3), (0, operators_1.catchError)((e) => {
             console.error(e);
             return (0, rxjs_1.of)(e);
-        }), (0, operators_1.map)((response) => response.data), (0, operators_1.map)((response) => response.data), (0, operators_1.map)((data) => data?.access_token), (0, operators_1.filter)(Boolean), (0, operators_1.tap)((access_token) => axios_observable_1.default.defaults.headers.common['Authorization'] = access_token));
+        }), (0, operators_1.map)((response) => response.data), (0, operators_1.map)((response) => response.data), (0, operators_1.map)((data) => data?.access_token), (0, operators_1.filter)(Boolean), (0, operators_1.tap)((access_token) => axios.defaults.headers.common['Authorization'] = `Bearer ${access_token}`)
+        //tap((access_token: string) => this.access_token = access_token)
+        );
     }
     pix_create(payload) {
         return axios.post('pix/create', payload)
