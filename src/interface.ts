@@ -109,9 +109,6 @@ export interface IPixKey {
     type: IPixType
     key: string
 }
-
-
-
 export interface IPixResponse {
     reference: string
     cob: {
@@ -124,23 +121,18 @@ export interface IPixResponse {
     expire: number
     provider: ENUM_DEPOSITS_PROVIDERS
 }
-
 export interface IBoletoResponse {
     cob: any
     status: DEPOSIT_STATUS
     timestamp: number
     expire: number
 }
-
-
 export interface ICheckResponse {
     trasaction_id: string
     type: DEPOSIT_TYPE
     status: DEPOSIT_STATUS | WITHDRAW_STATE
     merchant_id: string
 }
-
-
 export interface IWithdrawResponse {
     merchant_id: string
     status: WITHDRAW_STATUS_GN

@@ -8,7 +8,6 @@ import { ResponsePipago } from './operators.rxjs';
 const axios = Axios.create({ baseURL: HOST, timeout: 20000 });
 
 export class PipagoSdkNode {
-  private access_token: string
   private initializer: Observable<any>;
   private sub$: Subscription;
   private config: IAuthPayload;
@@ -43,14 +42,14 @@ export class PipagoSdkNode {
         tap((access_token: string) => axios.defaults.headers.common['Authorization'] = `Bearer ${access_token}`)
       )
   }
-  public pix_create(payload: IPixPayload): Observable<IPixResponse> {
-    return axios.post('pix/create', payload)
+  public check(transaction_id: string): Observable<ICheckResponse> {
+    return axios.get(`check/${transaction_id}`)
       .pipe(
         ResponsePipago
       )
   }
-  public pix_check(transaction_id: string): Observable<ICheckResponse> {
-    return axios.get(`pix/check/${transaction_id}`)
+  public pix_create(payload: IPixPayload): Observable<IPixResponse> {
+    return axios.post('pix/create', payload)
       .pipe(
         ResponsePipago
       )
@@ -61,32 +60,14 @@ export class PipagoSdkNode {
         ResponsePipago
       )
   }
-  public boleto_check(transaction_id: string): Observable<ICheckResponse> {
-    return axios.get(`boleto/check/${transaction_id}`)
-      .pipe(
-        ResponsePipago
-      )
-  }
   public cc_create(payload: IBoletoPayload): Observable<IPixResponse> {
     return axios.post('cc/create', payload)
       .pipe(
         ResponsePipago
       )
   }
-  public cc_check(transaction_id: string): Observable<ICheckResponse> {
-    return axios.get(`cc/check/${transaction_id}`)
-      .pipe(
-        ResponsePipago
-      )
-  }
   public mp_create(payload: IBoletoPayload): Observable<IPixResponse> {
     return axios.post('mp/create', payload)
-      .pipe(
-        ResponsePipago
-      )
-  }
-  public mp_check(transaction_id: string): Observable<ICheckResponse> {
-    return axios.get(`mp/check/${transaction_id}`)
       .pipe(
         ResponsePipago
       )
