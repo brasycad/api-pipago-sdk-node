@@ -1,6 +1,6 @@
 {
   "name": "api-pipago-sdk-node",
-  "version": "1.0.11",
+  "version": "1.0.12",
   "description": "Api on Nodejs to connect clients of the Brazilian payment system PIPAGO.",
   "main": "index.js",
   "scripts": {
