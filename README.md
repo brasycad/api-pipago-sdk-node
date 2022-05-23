@@ -1,10 +1,10 @@
 # api-pipago-sdk-node
 
 > A nodejs module for integration of your backend with the payment services provided by [Pipago](https://pipago.com.br/).
+> It is possible to carry out the integration tests using **Postman**
 
 > Um módulo nodejs para integrar seu backend com os serviços de pagamento da [Pipago](https://pipago.com.br/).
-
-> É possível realizar os testes de integração utilizando **Postman**/ It is possible to carry out the integration tests using **Postman**
+> É possível realizar os testes de integração utilizando **Postman**
 
 ## [](https://github.com/brasycad/api-pipago-sdk-node/blob/master/README.md#instala%C3%A7%C3%A3o)Instalação/Installation
 
