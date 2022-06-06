@@ -2,13 +2,12 @@ import { Observable, of, Subscription, timer } from 'rxjs';
 import Axios from 'axios-observable';
 import { catchError, map, tap, switchMap, retry, filter } from 'rxjs/operators';
 import { AxiosResponse } from 'axios';
-import { IAccessToken, IAuthPayload, IBoletoPayload, ICheckResponse, IHttpResponse, IPixPayload, IPixResponse, IWithdrawPayload, IWithdrawResponse } from './interface';
+import { IAccessToken, IAuthPayload, IBoletoPayload, ICheckResponse, IDeposit, IHttpResponse, IPixPayload, IPixResponse, IReportPayload, IWithdrawPayload, IWithdrawResponse } from './interface';
 import { HOST, MS_ONE_MIN } from './constants';
 import { ResponsePipago } from './operators.rxjs';
 const axios = Axios.create({ baseURL: HOST, timeout: 20000 });
 
 export class PipagoSdkNode {
-  private access_token: string
   private initializer: Observable<any>;
   private sub$: Subscription;
   private config: IAuthPayload;
@@ -33,7 +32,7 @@ export class PipagoSdkNode {
       .pipe(
         retry(3),
         catchError((e) => {
-          console.error(e);
+          console.error('Refresh Token error:', e);
           return of(e);
         }),
         map((response: AxiosResponse) => response.data),
@@ -43,56 +42,44 @@ export class PipagoSdkNode {
         tap((access_token: string) => axios.defaults.headers.common['Authorization'] = `Bearer ${access_token}`)
       )
   }
-  public pix_create(payload: IPixPayload): Observable<IPixResponse> {
+  public check(transaction_id: string): Observable<ICheckResponse> {
+    return axios.get(`check/${transaction_id}`)
+      .pipe(
+        ResponsePipago
+      )
+  }
+  public pix_create(payload: IPixPayload): Observable<IHttpResponse> {
     return axios.post('pix/create', payload)
       .pipe(
         ResponsePipago
       )
   }
-  public pix_check(transaction_id: string): Observable<ICheckResponse> {
-    return axios.get(`pix/check/${transaction_id}`)
-      .pipe(
-        ResponsePipago
-      )
-  }
-  public boleto_create(payload: IBoletoPayload): Observable<IPixResponse> {
+  public boleto_create(payload: IBoletoPayload): Observable<IHttpResponse> {
     return axios.post('boleto/create', payload)
       .pipe(
         ResponsePipago
       )
   }
-  public boleto_check(transaction_id: string): Observable<ICheckResponse> {
-    return axios.get(`pix/check/${transaction_id}`)
-      .pipe(
-        ResponsePipago
-      )
-  }
-  public cc_create(payload: IBoletoPayload): Observable<IPixResponse> {
+  public cc_create(payload: IBoletoPayload): Observable<IHttpResponse> {
     return axios.post('cc/create', payload)
       .pipe(
         ResponsePipago
       )
   }
-  public cc_check(transaction_id: string): Observable<ICheckResponse> {
-    return axios.get(`cc/check/${transaction_id}`)
-      .pipe(
-        ResponsePipago
-      )
-  }
-  public mp_create(payload: IBoletoPayload): Observable<IPixResponse> {
+  public mp_create(payload: IBoletoPayload): Observable<IHttpResponse> {
     return axios.post('mp/create', payload)
       .pipe(
         ResponsePipago
       )
   }
-  public mp_check(transaction_id: string): Observable<ICheckResponse> {
-    return axios.get(`mp/check/${transaction_id}`)
+  public pix_send(payload: IWithdrawPayload): Observable<IHttpResponse> {
+    return axios.post('pix/send', payload)
       .pipe(
         ResponsePipago
       )
   }
-  public pix_send(payload: IWithdrawPayload): Observable<IWithdrawResponse> {
-    return axios.post('pix/send', payload)
+  public report(payload: IReportPayload): Observable<IHttpResponse> {
+    return axios.post('report', payload)
       .pipe(
         ResponsePipago
       )
