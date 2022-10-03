@@ -138,3 +138,31 @@ export interface IWithdrawResponse {
     status: WITHDRAW_STATUS_GN
     transaction_id: string
 }
+export interface IReportPayload {
+    type: DEPOSIT_TYPE;
+    status?: DEPOSIT_STATUS | WITHDRAW_STATE
+    ts_start: number;
+    ts_end: number;
+    client_id?: string;
+    rows_per_page: number
+    page: number
+}
+export interface IDeposit {
+    _id?: string
+    type: DEPOSIT_TYPE
+    payload: IPixPayload | IBoletoPayload | ICcPayload | IMpPayload
+    transaction: IDepositTransaction
+    timestamp: number
+    movements?: { type: API_MOVEMENT, amount: number }[]
+}
+export interface IDepositTransaction {
+    status: DEPOSIT_STATUS | WITHDRAW_STATE
+    timestamp?: number
+    expire: number
+}
+export enum API_MOVEMENT {
+    DEPOSIT,
+    COMMISSION,
+    WITHDRAW,
+    ROOLBACK,
+}

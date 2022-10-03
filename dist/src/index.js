@@ -25,7 +25,7 @@ class PipagoSdkNode {
         return axios
             .get('auth', { headers: { Authorization: `Basic ${this.config.encoded}` } })
             .pipe((0, operators_1.retry)(3), (0, operators_1.catchError)((e) => {
-            console.error(e);
+            console.error('Refresh Token error:', e);
             return (0, rxjs_1.of)(e);
         }), (0, operators_1.map)((response) => response.data), (0, operators_1.map)((response) => response.data), (0, operators_1.map)((data) => data?.access_token), (0, operators_1.filter)(Boolean), (0, operators_1.tap)((access_token) => axios.defaults.headers.common['Authorization'] = `Bearer ${access_token}`));
     }
@@ -70,6 +70,10 @@ class PipagoSdkNode {
             console.log(err);
             return (0, rxjs_1.of)(err);
         }), operators_rxjs_1.ResponsePipago);
+    }
+    report(payload) {
+        return axios.post('report', payload)
+            .pipe(operators_rxjs_1.ResponsePipago);
     }
 }
 exports.PipagoSdkNode = PipagoSdkNode;

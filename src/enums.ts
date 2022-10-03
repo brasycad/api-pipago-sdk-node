@@ -37,7 +37,7 @@ export enum DEPOSIT_TYPE {
 export enum WITHDRAW_STATE {
     PENDING = 'PENDING',
     APPROVED = 'APPROVED',
-    CANCELLED = 'CANCELLED',
+    CANCELED = 'CANCELED',
 }
 export enum DEPOSIT_PROVIDER_CODE {
     PIX = 'IX',
@@ -64,7 +64,7 @@ export enum GN_STATUS {
     WAITING = 'waiting',
     NEW = 'new',
     UNPAID = 'unpaid',
-    CANCELLED = 'cancelled',
+    CANCELED = 'canceled',
     EXPIRED = 'expired',
     REFUNDED = 'refunded'
 }
@@ -81,6 +81,6 @@ export enum WITHDRAW_STATUS_GN {
 
 export enum DEPOSIT_STATUS {
     PENDING = 'PENDING',
-    CANCELLED = 'CANCELLED',
+    CANCELED = 'CANCELED',
     APPROVED = 'APPROVED',
 }
