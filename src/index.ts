@@ -45,36 +45,60 @@ export class PipagoSdkNode {
   public check(transaction_id: string): Observable<ICheckResponse> {
     return axios.get(`check/${transaction_id}`)
       .pipe(
+        catchError((err) => {
+          console.log(err)
+          return of(err);
+        }),
         ResponsePipago
       )
   }
   public pix_create(payload: IPixPayload): Observable<IPixResponse> {
     return axios.post('pix/create', payload)
       .pipe(
+        catchError((err) => {
+          console.log(err)
+          return of(err);
+        }),
         ResponsePipago
       )
   }
   public boleto_create(payload: IBoletoPayload): Observable<IPixResponse> {
     return axios.post('boleto/create', payload)
       .pipe(
+        catchError((err) => {
+          console.log(err)
+          return of(err);
+        }),
         ResponsePipago
       )
   }
   public cc_create(payload: IBoletoPayload): Observable<IPixResponse> {
     return axios.post('cc/create', payload)
       .pipe(
+        catchError((err) => {
+          console.log(err)
+          return of(err);
+        }),
         ResponsePipago
       )
   }
   public mp_create(payload: IBoletoPayload): Observable<IPixResponse> {
     return axios.post('mp/create', payload)
       .pipe(
+        catchError((err) => {
+          console.log(err)
+          return of(err);
+        }),
         ResponsePipago
       )
   }
   public pix_send(payload: IWithdrawPayload): Observable<IWithdrawResponse> {
     return axios.post('pix/send', payload)
       .pipe(
+        catchError((err) => {
+          console.log(err)
+          return of(err);
+        }),
         ResponsePipago
       )
   }
